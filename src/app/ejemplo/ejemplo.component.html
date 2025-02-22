@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-center">
+
+    <div class="w-25">
+        <div class="display-3">
+            Login
+        </div>
+        <div>
+            <form [autocomplete]="false">
+                <div>
+                    <div class="h4">
+                        Bienvenido a VMT Dev
+                    </div>
+                </div>
+                <div>
+                    <!--Aqui no es obligatorio usar el name porque no vamos a usar JS para manejar sus valores, ni el metodo POST ni el metodo submit para enviar los valores de un lugar a otro. -->
+                    <label for="usuario">Usuario:</label>
+                    <input class="form-control" [(ngModel)]="objetoLogin.user" type="text" name="usuario" id="usuario" placeholder="Ingrese su usuario" required>
+                </div>
+                <div>
+                    <label for="password">Contraseña:</label>
+                    <input type="password" name="password" id="password" class="form-control" [(ngModel)]="objetoLogin.password" [placeholder]="placeHolderPassword" required>
+                    <!--Si se quiere poner dentro del atributo html de placeholder ahi mismo el texto a mostrar se poner comillas simples dentro de las comillas dobles "''"-->
+                </div>
+                <div class="form-check">
+                    <label for="islogged" class="form-check-label">Mantener sesión iniciada</label>
+                    <input type="checkbox" name="islogged" id="islogged" [(ngModel)]="objetoLogin.logged" class="form-check-input">
+                </div>
+                <div>
+                    <button class="btn btn-success" (click)="loginProcess()">Iniciar sesión</button>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-link">Recuperar contraseña</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>

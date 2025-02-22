@@ -1,0 +1,10 @@
+<input type="button" value="Click Angular" class="btn btn-primary" (click)="clickBoton()">
+
+
+<br>
+<br>
+<label for="inputText">Id:</label>
+<input type="text" id="inputText" [(ngModel)] = "nombre" name="inputText" required class="form-control">
+<p>{{nombre}}</p>
+
+<!--ngModel es un mecanismo de Angular que nos permite acceder a una variable y cambiar su valor en el tiempo y una forma de manejarlo en la pagina web sin establecer acciones adicionales-->>
