@@ -18,9 +18,26 @@
                 <td>
                     <!--Dentro de los atributos del boton, en sus parametros de configuracion de puede usar un condicional para deshabilitar
                     dicho boton cuando haya una cantidad menor o mayor a un numero determinado. -->
-                    <app-crud-button [styleButton]="'primary'" [iconButton]="'refresh'" [disabled]="device.quantity < 20"></app-crud-button> 
+                    <app-crud-button 
+                        [styleButton]="'primary'" 
+                        [iconButton]="'refresh'" 
+                        [device]="device"
+                        (clickSave)="updateTable($event)"
+                        ></app-crud-button> 
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
+
+<!-- ? En el HTML del componente padre (device.component.html), el botón hijo se usa así:
+     ? (clickSave)="updateTable($event)" --- Aquí se "escucha" el evento 
+     ? El app-crud-button emite el evento clickSave.
+     ? En el padre, usamos (clickSave)="updateTable($event)" para escuchar el evento.
+     ? Cuando clickSave se emite, el método updateTable($event) se ejecuta.
+     ? El $event contiene el objeto deviceUpdate que envió el hijo.
+-->
+
+<!--? Siempre que hay un event que envia informacion como es el caso de updateTable() ese valor que se envia esta representado con un $event-->
+  
+ 

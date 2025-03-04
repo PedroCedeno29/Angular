@@ -1,6 +1,44 @@
 <!--Vamos a manejar la presentacion y la configuracion (su comportamiento) de este componente compartido.-->
 <!--Aqui lo que hacemos es enviar el estilo, icono, label a variables dentro de un input en el component.ts para que en un futuro pueda modificarse -->
+<!--Cuando Angular requiere trabajar con un atributo de bootstrap este atributo debe ir entre llaves cuadradas es decir  " ' ' " -->
+<!--Para acceder a los atributos de Angular se debe usar el attr. aqui estamos indicando con que Modal vamos a trabajar.-->
+<!--? el data-bs-toggle indica hacia que tipo de elemento se va a interactuar-->
+<!--? El data-bs-target ya es el elemento en especifico con el que va a interactuar en este caso se identifica por medio del id del modal.-->
+<!--El evento click en este apartado no esta haciendo nada ya que en el compnente padre device.component.html se le esta asignando otro evento.-->
 
-<button class="btn btn-{{styleButton}}" 
+<button 
+    data-bs-toggle="modal"
+    [attr.data-bs-target]="'#deviceModal-'+device.id" 
+    class="btn btn-{{ styleButton }}" 
     *ngIf="showButton" 
-    [disabled]="disabled" (click)="clickEventUpdate()"><i class="fa fa-{{iconButton}}"></i>{{labelButton}}</button>
+    type="button" [disabled]="disabled" 
+    (click)="clickEventUpdate()">
+    <i class="fa fa-{{ iconButton }}"></i>{{ labelButton }}
+</button>
+
+
+ <!-- Modal -->
+ <div class="modal fade" [id]="'deviceModal-'+device.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar dispositivo</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label for="device">Dispositivos</label>
+                    <input class="form-control" type="text" [(ngModel)]="name" name="device" id="device">
+                </div>
+                <div>
+                    <label for="quantity">Cantidad</label>
+                    <input class="form-control" type="number" [(ngModel)]="quantity" name="quantity" id="quantity">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="clickEventSave()" data-bs-dismiss="modal" >Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
