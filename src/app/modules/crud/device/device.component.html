@@ -2,6 +2,9 @@
     <div class="display-3">
         Mantenimiento de dispositivos
     </div>
+    <div>
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newdevice"> Nuevo dispositivo </button>
+    </div>
     <table class="table table-hover">
         <thead>
             <th>#</th>
@@ -28,6 +31,32 @@
             </tr>
         </tbody>
     </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newdevice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar dispositivo</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label for="device">Dispositivos</label>
+                    <input class="form-control" type="text" [(ngModel)]="newDeviceName" name="device" id="device">
+                </div>
+                <div>
+                    <label for="quantity">Cantidad</label>
+                    <input class="form-control" type="number" [(ngModel)]="newDeviceQuantity" name="quantity" id="quantity">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="addNewDevice()" data-bs-dismiss="modal" >Guardar</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- ? En el HTML del componente padre (device.component.html), el botón hijo se usa así:

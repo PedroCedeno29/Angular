@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PersonComponent } from './person/person.component';
 import { DeviceComponent } from './device/device.component';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -13,7 +14,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   exports:[
     DeviceComponent,
