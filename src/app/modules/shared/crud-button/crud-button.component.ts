@@ -15,6 +15,7 @@ export class CrudButtonComponent implements AfterViewInit, OnInit {
 
   name:string = '';
   quantity: number = 0;
+  price: number = 0;
 
   ngOnInit(): void {
     this.name = this.device.name;
@@ -57,12 +58,13 @@ export class CrudButtonComponent implements AfterViewInit, OnInit {
   //Se crea una variable de @Input para que cuando se rendericen todos los componentes en el componente padre y se recorra la lista de dispositivos
   //del componente padre estos dispositivos se pasen a esta variable device del componente hijo y asi se vayan almacenando los datos de cada dispositivos
   //para posteriormente poder modificarlos.
-  
+
   @Input()
   device: DeviceI = {
     id: 0,
     name: '',
-    quantity: 0
+    quantity: 0,
+    price: 0
   }
 
 
@@ -81,7 +83,8 @@ export class CrudButtonComponent implements AfterViewInit, OnInit {
     let deviceUpdate: DeviceI = {
       id: this.device.id,
       name: this.name,
-      quantity: this.quantity
+      quantity: this.quantity,
+      price: this.price
     }
     this.clickSave.emit(deviceUpdate);
   }

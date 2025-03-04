@@ -16,23 +16,27 @@ export class DeviceComponent {
   //Estas variables se pasan al ngModel
   newDeviceName: string = '';
   newDeviceQuantity: number = 0;
+  newDevicePrice: number = 0;
 
 
   deviceList: DeviceI[] = [
     {
       id: 1,
       name: 'Samsung S25 ultra',
-      quantity: 25
+      quantity: 25,
+      price: 450
     },
     {
       id: 2,
       name: 'Xiaomi Note 9 pro',
-      quantity: 30
+      quantity: 30,
+      price: 400
     },
     {
       id: 3,
       name: 'Redmi Note 14 pro',
-      quantity: 15
+      quantity: 15,
+      price: 460
     }
   ]
 
@@ -59,7 +63,8 @@ export class DeviceComponent {
     let newDevice: DeviceI = {
       id: lastDeviceId,
       name: this.newDeviceName,
-      quantity: this.newDeviceQuantity
+      quantity: this.newDeviceQuantity,
+      price: this.newDevicePrice
     }
     this.deviceList.push(newDevice);
 
