@@ -1,0 +1,26 @@
+<div class="m-4">
+    <div class="display-3">
+        Mantenimiento de dispositivos
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <th>#</th>
+            <th>Dispositivo</th>
+            <th>Cantidad</th>
+            <th>Opciones</th>
+        </thead>
+        <tbody>
+            <!--tr = table row = fila-->
+            <tr *ngFor="let device of deviceList">
+                <td> {{ device.id }} </td>
+                <td> {{ device.name }} </td>
+                <td> {{ device.quantity }}</td>
+                <td>
+                    <!--Dentro de los atributos del boton, en sus parametros de configuracion de puede usar un condicional para deshabilitar
+                    dicho boton cuando haya una cantidad menor o mayor a un numero determinado. -->
+                    <app-crud-button [styleButton]="'primary'" [iconButton]="'refresh'" [disabled]="device.quantity < 20"></app-crud-button> 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

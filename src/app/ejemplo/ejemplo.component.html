@@ -26,11 +26,17 @@
                     <input type="checkbox" name="islogged" id="islogged" [(ngModel)]="objetoLogin.logged" class="form-check-input">
                 </div>
                 <div>
-                    <button class="btn btn-success" (click)="loginProcess()">Iniciar sesión</button>
+                    <button class="btn btn-success w-100" (click)="loginProcess()">Iniciar sesión</button>
                 </div>
+
+                <div>
+                    <button class="btn btn-warning mt-3 w-100" (click)="clickEventEmiter()" type="button">Registrarse</button>
+                
+                </div >
                 <div>
                     <button type="button" class="btn btn-link">Recuperar contraseña</button>
                 </div>
+                
             </form>
         </div>
 

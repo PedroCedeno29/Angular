@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { EjemploComponent } from './ejemplo/ejemplo.component';
 import { Ejemplo3Component } from './ejemplo3/ejemplo3.component';
 import { Ejemplo2Component } from './ejemplo2/ejemplo2.component';
+import { CrudModule } from './modules/crud/crud.module';
+import { SharedModule } from './modules/shared/shared.module';
 
 
 
@@ -25,7 +27,9 @@ import { Ejemplo2Component } from './ejemplo2/ejemplo2.component';
     BrowserModule,
     AppRoutingModule,
     Ejemplo2Component,
-    FormsModule
+    FormsModule,
+    CrudModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent] /*EL boostratp indica cual va a ser el modulo que va a inicar el proyecto */

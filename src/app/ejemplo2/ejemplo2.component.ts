@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SignupI } from '../interfaces/signup.interface';
 
@@ -11,8 +11,12 @@ import { SignupI } from '../interfaces/signup.interface';
 })
 export class Ejemplo2Component {
 
+  @Output() switchEvent = new EventEmitter();
+
   firstInputPassword: string = '';
   confirmInputPassword: string = '';
+
+  oculto: boolean = true;
 
   signupobjetct: SignupI = {
     firstname: '',
@@ -21,5 +25,9 @@ export class Ejemplo2Component {
     email:'',
     phonenumber:'',
     password:''
+  }
+
+  clickEventEmitter(){
+    this.switchEvent.emit()
   }
 }

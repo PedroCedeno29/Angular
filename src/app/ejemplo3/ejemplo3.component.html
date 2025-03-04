@@ -1,1 +1,16 @@
-<p>ejemplo3 works!</p>
+<!--El @if permite usar un condicional dentro del codigo html-->
+<!--Cada vez que un componente hijo emita un switchEvent (se de un click a un boton) se ejecutara el switchAuthProcess() del componente padre.-->
+<!--El ng-template es un contenedor de contenido HTML que no se renderiza en el DOM a menos que sea explicitamente instanciado por Angular. Es decir su contenido no aparece en la pagina hasta que Angular lo activa.-->
+
+<div *ngIf="showLogin else signup">
+    <app-ejemplo id="login" (switchEvent)="switchAuthProcess()"></app-ejemplo>
+</div>
+
+<ng-template #signup>
+    <div>
+        <app-ejemplo2 id="signup" (switchEvent)="switchAuthProcess()"></app-ejemplo2>
+    </div>
+
+</ng-template>
+
+

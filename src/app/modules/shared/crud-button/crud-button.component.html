@@ -1,0 +1,6 @@
+<!--Vamos a manejar la presentacion y la configuracion (su comportamiento) de este componente compartido.-->
+<!--Aqui lo que hacemos es enviar el estilo, icono, label a variables dentro de un input en el component.ts para que en un futuro pueda modificarse -->
+
+<button class="btn btn-{{styleButton}}" 
+    *ngIf="showButton" 
+    [disabled]="disabled" (click)="clickEventUpdate()"><i class="fa fa-{{iconButton}}"></i>{{labelButton}}</button>

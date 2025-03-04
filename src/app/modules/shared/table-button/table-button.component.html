@@ -1,0 +1,54 @@
+<!--Los atributos de Angular para recibir un parametro del componente-->
+<!--La interpolacion es una forma de aplicacion de true way binding, donde las variable que estan presentes en el codigo html son las mismas que estan presenten en el component.ts-->
+
+<div class="btn-group" role="group">
+    <button class="btn btn-{{buttonProperties.styleButtonUpdate}}" *ngIf="buttonProperties.showUpdate" type="button"
+        (click)="clickEventUpdate()" data-bs-toggle="modal" [attr.data-bs-target]="'#'+ personData.id">
+        <i class="fa fa-{{buttonProperties.iconButtonUpdate}}"></i> {{buttonProperties.labelUpdate}}
+    </button>
+
+
+    <button class="btn btn-{{buttonProperties.styleButtonDelete}}" *ngIf="buttonProperties.showDelete" type="button"
+        (click)="clickEventeDelete()">
+        <i class="fa fa-{{buttonProperties.iconButtonDelete}}"></i> {{buttonProperties.labelDelete}}
+    </button>
+
+
+    <button class="btn btn-{{buttonProperties.styleButtonAditional}}" *ngIf="buttonProperties.showOption" type="button"
+        (click)="clickEventOption()">
+        <i class="fa fa-{{buttonProperties.iconButtonAditional}}"></i> {{buttonProperties.labelAditional}}
+    </button>
+</div>
+  
+  <!-- Modal -->
+   <!--El botón "Actualizar" tiene un data-bs-target que apunta al id del modal.
+   El modal tiene un id="{{personData.id}}", lo que significa que cada fila tiene un modal único asignado con base en su id:
+   -->
+  <div class="modal fade" id="{{personData.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <label for="firstname">Nombre:</label>
+            <input class="form-control" type="text" id="firstname" name="firstname" [(ngModel)]="firstNameLocal">
+          </div>
+          <div>
+            <label for="lastname">Apellido:</label>
+            <input class="form-control" type="text" id="lastname" name="lastname" [(ngModel)]="lastNameLocal">
+          </div>
+          <div>
+            <label for="phone">Teléfono:</label>
+            <input class="form-control" type="text" id="phone" name="phone" [(ngModel)]="phoneLocal">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="clickEventSave()">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>

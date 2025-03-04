@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-end w-75 mt-2 mb"> 
+    <button type="button" class="btn btn-success"><i class="fa fa-save"></i> Grabar</button>
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+            <th>
+                #
+            </th>
+            <th>
+                First name
+            </th>
+            <th>
+                Last name
+            </th>
+            <th>
+                Genre
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                Actions
+            </th>
+        </thead>
+        <tbody>
+            <!--Este ngFor funciona como un for en TS, donde se establece una variable (person) donde se va a almacenar cada valor de dataPerson que es un arreglo del tipo PersonI. Asi se van llenando las filas de la tabla.
+                Cada fila incluye un botón "Actualizar" que pertenece a su propio componente TableButtonComponent.
+                Se pasa un objeto person a TableButtonComponent usando [personData]="person".
+                personData ahora contiene la información de esa persona específica, reemplazando los valores iniciales (id: 0, firstname: '', etc.).
+                Cuando el modal se abre, los valores de personData ya están actualizados con los datos de la persona de la fila correspondiente.
+            -->
+            <tr *ngFor="let person of dataPerson">
+                <td>
+                    {{person.id}}
+                </td>
+                <td>
+                    {{person.firstname}}
+                </td>
+                <td>
+                    {{person.lastname}}
+                </td>
+                <td>
+                    {{person.genre}}
+                </td>
+                <td>
+                    {{person.phone}}
+                </td>
+                
+                <td>
+                    <!--El componente <app-table-button> recibe personData de cada persona en la tabla.-->
+                    <!--Cuando se utilizan parametros cuando se envia de un evento de salida se debe usar la palabra reservada $event-->
+                    <!--personData es la variable dentro del component.ts que va a almacenar los datos de cada fila de la tabla para pasarselo al boton -->
+                    <app-table-button [buttonProperties]="buttonProperties" [personData]="person" (eventSave)="addPersonToUpdate($event)"></app-table-button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
