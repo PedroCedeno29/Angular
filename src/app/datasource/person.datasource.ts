@@ -100,5 +100,16 @@ export const personDS: PersonI[] = [
         "phone": "555-5319",
         "ciudad": "Córdoba",
         "nivel_estudios": "Licenciatura"
+    },
+    {
+        "id": 11,
+        "firstname": "Ana",
+        "lastname": "Ramirez Avellan",
+        "fecha_nacimiento": "1994-10-01",
+        "genre": "",
+        "phone": "555-5345",
+        "ciudad": "Córdoba",
+        "nivel_estudios": "Licenciatura"
     }
+
 ]

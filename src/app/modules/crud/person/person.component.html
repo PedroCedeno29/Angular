@@ -41,8 +41,16 @@
                 <td>
                     {{person.lastname}}
                 </td>
-                <td>
-                    {{person.genre}}
+                <td [ngSwitch]="person.genre">
+                    <div *ngSwitchCase="'M'" >
+                        Male
+                    </div>
+                    <div *ngSwitchCase="'F'">
+                        Female
+                    </div>
+                    <div *ngSwitchDefault>
+                        Genero no definido
+                    </div>
                 </td>
                 <td>
                     {{person.phone}}
@@ -58,3 +66,6 @@
         </tbody>
     </table>
 </div>
+
+<!--? [ngSwitch] se usa como una propiedad de directiva en un elemento contenedor.-->
+<!--? *ngSwitchCase se usa en los elementos individuales que deben mostrarse condicionalmente. Si intentaras usar *ngSwitch, obtendrías un error porque Angular no reconoce ngSwitch como una directiva estructural.-->
