@@ -10,6 +10,8 @@ import { Ejemplo3Component } from './ejemplo3/ejemplo3.component';
 import { Ejemplo2Component } from './ejemplo2/ejemplo2.component';
 import { CrudModule } from './modules/crud/crud.module';
 import { SharedModule } from './modules/shared/shared.module';
+import { TableProductComponent } from './modules/shopcart/table-product/table-product.component';
+import { ShopcartModule } from './modules/shopcart/shopcart.module';
 
 
 
@@ -29,7 +31,9 @@ import { SharedModule } from './modules/shared/shared.module';
     Ejemplo2Component,
     FormsModule,
     CrudModule,
-    SharedModule
+    SharedModule,
+    ShopcartModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent] /*EL boostratp indica cual va a ser el modulo que va a inicar el proyecto */
