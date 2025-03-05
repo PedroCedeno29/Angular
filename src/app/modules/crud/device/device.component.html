@@ -19,7 +19,7 @@
                 <td> {{ device.id }} </td>
                 <td> {{ device.name }} </td>
                 <td> {{ device.quantity }}</td>
-                <td> {{ device.price | currency }}</td>
+                <td> {{ device.price | quantityPipe }}</td>
                 <td>
                     <!--Dentro de los atributos del boton, en sus parametros de configuracion de puede usar un condicional para deshabilitar
                     dicho boton cuando haya una cantidad menor o mayor a un numero determinado. -->
