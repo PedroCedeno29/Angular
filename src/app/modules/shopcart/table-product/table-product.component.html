@@ -9,12 +9,35 @@
                 <th>Producto</th>
                 <th>Proveedor</th>
                 <th>Categoria</th>
+                <th>Price</th>
                 <th>Stock disponible</th>
                 <th>Opciones</th>
             </thead>
             <tbody>
-                <tr>
-
+                <tr *ngFor="let product of listaproduct" >
+                    <td>{{product.id}}</td>
+                    <td>{{product.product}}</td>
+                    <td>{{product.provider}}</td>
+                    <td [ngSwitch]="product.category">
+                        <div *ngSwitchCase="'OC'">
+                            Ocio
+                        </div>
+                        <div *ngSwitchCase="'VA'">
+                            Varios
+                        </div>
+                        <div *ngSwitchCase="'HT'">
+                            Salud
+                        </div>
+                        <div *ngSwitchCase="'CO'">
+                            Cocina
+                        </div>
+                        <div *ngSwitchDefault="">
+                            No definido
+                        </div>
+                        
+                    </td>
+                    <td>{{product.price | currency}}</td>
+                    <td>{{product.stock | quantityPipe}}</td>
                 </tr>
             </tbody>
         </table>
