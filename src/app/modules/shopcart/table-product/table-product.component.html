@@ -1,5 +1,5 @@
-<div>
-    <div class="display-4">
+<div class="form-control m-2">
+    <div class="display-6">
         Productos en stock
     </div>
     <div>
@@ -38,6 +38,11 @@
                     </td>
                     <td>{{product.price | currency}}</td>
                     <td>{{product.stock | quantityPipe}}</td>
+                    <td>
+                        <!-- Como hay un boton por cada fila (producto) el evento click va a guardar el producto que nosotros seleccionemos -->
+                        <!-- <input class="btn btn-primary" type="button" value="+"> -->
+                        <button class="btn btn-primary" (click)="aggProduct(product)"><i class="fa fa-plus"></i>+</button>
+                    </td>
                 </tr>
             </tbody>
         </table>

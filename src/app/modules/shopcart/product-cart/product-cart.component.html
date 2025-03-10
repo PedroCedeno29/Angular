@@ -1,0 +1,18 @@
+<div class="d-flex">
+    <div class="w-95">
+        <div class="display-3">
+            Carrito de compras
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <!--$event siempre se deve usar para recibir la informacion que emite el evento de salida, en este caso eventAggProduct-->
+                    <app-table-product (eventAggProduct)="aggProduct($event)"></app-table-product>
+                </div>
+                <div class="col">
+                    <app-table-product-selected></app-table-product-selected>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

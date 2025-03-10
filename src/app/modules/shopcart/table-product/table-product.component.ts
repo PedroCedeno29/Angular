@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ProductDetailI } from '../../../interfaces/productdetail.interface';
 
 @Component({
@@ -7,6 +7,10 @@ import { ProductDetailI } from '../../../interfaces/productdetail.interface';
   styles: ``
 })
 export class TableProductComponent {
+
+  //Creamos un evento de salida para enviar el producto seleccionado al componente table-product-selected
+  @Output() eventAggProduct = new EventEmitter<ProductDetailI>();
+
 
   listaproduct: ProductDetailI[] = [
     {
@@ -66,5 +70,20 @@ export class TableProductComponent {
       "category": "VA"
     }
   ];
+
+
+  //La variable eventAggProduct se va a ejecutar cuando se llame al metodo aggProduct.
+  //aggProduct es una metodo que va a recibir el producto y va a activar el evento de salida eventAggProduct que va a encargase 
+  // de enviar la informacion del producto al otro componente table-product-selected.
+  aggProduct(product: ProductDetailI){
+
+    this.listaproduct.map(productSelected => {
+      if(productSelected.id == product.id){
+        productSelected.stock = productSelected.stock -1;
+      }
+      
+    })
+    this.eventAggProduct.emit(product);
+  }
 
 }

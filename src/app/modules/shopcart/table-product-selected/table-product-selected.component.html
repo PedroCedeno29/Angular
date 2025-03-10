@@ -1,0 +1,54 @@
+<div class="form-control m-2">
+    <div class="display-6">
+        Productos seleccionados
+    </div>
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <th>#</th>
+                <th>Producto</th>
+                <th>Categoria</th>
+                <th>Price</th>
+                <th>Cantidad</th>
+                <th>Opciones</th>
+            </thead>
+            <tbody>
+                @if (listaProductSelected.length > 0) {
+                    <tr *ngFor="let product of listaProductSelected" >
+                        <td>{{product.id}}</td>
+                        <td>{{product.product}}</td>
+                        <td [ngSwitch]="product.category">
+                            <div *ngSwitchCase="'OC'">
+                                Ocio
+                            </div>
+                            <div *ngSwitchCase="'VA'">
+                                Varios
+                            </div>
+                            <div *ngSwitchCase="'HT'">
+                                Salud
+                            </div>
+                            <div *ngSwitchCase="'CO'">
+                                Cocina
+                            </div>
+                            <div *ngSwitchDefault="">
+                                No definido
+                            </div>
+                            
+                        </td>
+                        <td>{{product.price | currency}}</td>
+                        <td>{{product.stock | quantityPipe}}</td>
+                        <td>
+                            <!-- <input class="btn btn-primary" type="button" value="Agregar"> -->
+                            <button class="btn btn-primary"><i class="fa fa-plus"></i>Quitar</button>
+                        </td>
+                    </tr>
+                } 
+                @else {
+                    <tr class="text-center">
+                        Sin productos seleccionados.
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
