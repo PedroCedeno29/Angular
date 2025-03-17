@@ -40,8 +40,9 @@
                     <td>{{product.stock | quantityPipe}}</td>
                     <td>
                         <!-- Como hay un boton por cada fila (producto) el evento click va a guardar el producto que nosotros seleccionemos -->
+                         <!-- Adicional se agrego una condicional para que si el stock de un producto llega a 0 el boton se desactive (aqui agregamos el disable para manejar esta condicion.) -->
                         <!-- <input class="btn btn-primary" type="button" value="+"> -->
-                        <button class="btn btn-primary" (click)="aggProduct(product)"><i class="fa fa-plus"></i>+</button>
+                        <button class="btn btn-primary" (click)="aggProduct(product)" [disabled]="product.stock == 0"><i class="fa fa-plus"></i>+</button>
                     </td>
                 </tr>
             </tbody>
