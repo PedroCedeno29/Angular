@@ -4,6 +4,7 @@ import { TableProductComponent } from './table-product/table-product.component';
 import { SharedModule } from '../shared/shared.module';
 import { TableProductSelectedComponent } from './table-product-selected/table-product-selected.component';
 import { ProductCartComponent } from './product-cart/product-cart.component';
+import { CartSummaryComponent } from './cart-summary/cart-summary.component';
 
 
 
@@ -11,7 +12,8 @@ import { ProductCartComponent } from './product-cart/product-cart.component';
   declarations: [
     TableProductComponent,
     TableProductSelectedComponent,
-    ProductCartComponent
+    ProductCartComponent,
+    CartSummaryComponent
     ],
   imports: [
     CommonModule,

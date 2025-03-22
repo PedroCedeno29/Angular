@@ -10,7 +10,10 @@
                     <app-table-product (eventAggProduct)="aggProduct($event)"></app-table-product>
                 </div>
                 <div class="col">
-                    <app-table-product-selected></app-table-product-selected>
+                    <!-- Aqui se establece el evento que va a quitar el producto en el html del componente hijo. -->
+                    <!-- Si es que tengo un evento que devuelve un valor o una variable ese se puede recibir sobre el '$event'-->
+                     <!-- eventQuitProduct es el evento de este componente hijo que envia el producto hacia el metodo quitProduct del componente padre y este lo recibe con $event. -->
+                    <app-table-product-selected (eventQuitProduct)="quitProduct($event)"></app-table-product-selected>
                 </div>
             </div>
         </div>

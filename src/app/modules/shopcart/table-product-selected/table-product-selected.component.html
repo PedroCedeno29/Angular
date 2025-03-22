@@ -38,8 +38,9 @@
                         <td>{{product.price | currency}}</td>
                         <td>{{product.stock | quantityPipe}}</td>
                         <td>
-                            <!-- <input class="btn btn-primary" type="button" value="Agregar"> -->
-                            <button class="btn btn-primary"><i class="fa fa-plus"></i>Quitar</button>
+                            <!-- Cuando se hace click en este boton se llama al metodo quitProduct() y se le pasa el producto seleccionado.
+                             en la logica de este metodo esta emitir un evento para que este sea escuchado por el componente padre que es el carrito de compras (product-cart) -->
+                            <button class="btn btn-danger" type="button" (click)="quitProduct(product)"><i class="fa fa-plus"></i>Quitar</button>
                         </td>
                     </tr>
                 } 
