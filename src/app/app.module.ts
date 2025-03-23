@@ -5,13 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MiprimercomponenteComponent } from './miprimercomponente/miprimercomponente.component';
 import { FormsModule } from '@angular/forms';
-import { EjemploComponent } from './ejemplo/ejemplo.component';
-import { Ejemplo3Component } from './ejemplo3/ejemplo3.component';
-import { Ejemplo2Component } from './ejemplo2/ejemplo2.component';
+import { EjemploComponent } from './vmtdev/ejemplo/ejemplo.component';
+import { Ejemplo3Component } from './vmtdev/ejemplo3/ejemplo3.component';
+import { Ejemplo2Component } from './vmtdev/ejemplo2/ejemplo2.component';
 import { CrudModule } from './modules/crud/crud.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { TableProductComponent } from './modules/shopcart/table-product/table-product.component';
 import { ShopcartModule } from './modules/shopcart/shopcart.module';
+import { NotfoundComponent } from './modules/shared/notfound/notfound.component';
 
 
 
@@ -24,6 +25,7 @@ import { ShopcartModule } from './modules/shopcart/shopcart.module';
     MiprimercomponenteComponent, 
     EjemploComponent, 
     Ejemplo3Component, 
+    NotfoundComponent 
   ],
   imports: [
     BrowserModule,

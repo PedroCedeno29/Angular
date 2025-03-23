@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { CartSummaryI } from '../../../interfaces/catsummary.interface';
+import { CartSummaryI } from '../../../interfaces/cartSummary.interface';
 
 @Component({
   selector: 'app-cart-summary',

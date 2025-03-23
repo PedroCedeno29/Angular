@@ -3,7 +3,7 @@ import { TableProductSelectedComponent } from '../table-product-selected/table-p
 import { ProductDetailI } from '../../../interfaces/productdetail.interface';
 import { TableProductComponent } from '../table-product/table-product.component';
 import { CartSummaryComponent } from '../cart-summary/cart-summary.component';
-import { CartSummaryI } from '../../../interfaces/catsummary.interface';
+import { CartSummaryI } from '../../../interfaces/cartSummary.interface';
 
 @Component({
   selector: 'app-product-cart',

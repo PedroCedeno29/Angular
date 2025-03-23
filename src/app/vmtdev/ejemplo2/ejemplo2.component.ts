@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SignupI } from '../interfaces/signup.interface';
+import { SignupI } from '../../interfaces/signup.interface';
 
 @Component({
   selector: 'app-ejemplo2',

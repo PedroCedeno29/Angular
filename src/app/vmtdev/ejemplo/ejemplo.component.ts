@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { loginInterface } from '../interfaces/login.interface';
+import { loginInterface } from '../../interfaces/login.interface';
 
 @Component({
   selector: 'app-ejemplo', //nombre del componente en general que se va a usar para instanciarlo en cualquier pagina dentro del proyecto
