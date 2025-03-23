@@ -15,6 +15,9 @@
                      <!-- eventQuitProduct es el evento de este componente hijo que envia el producto hacia el metodo quitProduct del componente padre y este lo recibe con $event. -->
                     <app-table-product-selected (eventQuitProduct)="quitProduct($event)"></app-table-product-selected>
                 </div>
+                <div>
+                    <app-cart-summary></app-cart-summary>
+                </div>
             </div>
         </div>
     </div>

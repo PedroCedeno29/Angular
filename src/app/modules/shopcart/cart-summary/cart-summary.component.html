@@ -1,1 +1,23 @@
-<p>cart-summary works!</p>
+<div class="form-control">
+    <div>
+        <!-- Con la interpolacion {{}} se traen los valores del componente.ts hacia el componente.html -->
+        Subtotal: {{subtotal | currency}}
+    </div>
+    <div>
+        Iva 15%: {{iva | currency}}
+    </div>
+    <div>
+        Subtotal + IVA: {{subtotaliva | currency}}
+    </div>
+    <div>
+        Descuento: {{totalDescuento | currency}}
+    </div>
+    <div>
+        Total a pagar : {{totalPago | currency}}
+    </div>
+
+
+</div>
+
+
+<!--? La interpolacion (Two way Binding) permite tener los valores de la variable en le frontend, entonces se pueden visualizar actualizados los valores de las variables.-->

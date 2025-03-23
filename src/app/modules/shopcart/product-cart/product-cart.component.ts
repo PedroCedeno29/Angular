@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { TableProductSelectedComponent } from '../table-product-selected/table-product-selected.component';
 import { ProductDetailI } from '../../../interfaces/productdetail.interface';
 import { TableProductComponent } from '../table-product/table-product.component';
+import { CartSummaryComponent } from '../cart-summary/cart-summary.component';
 
 @Component({
   selector: 'app-product-cart',
@@ -12,7 +13,7 @@ import { TableProductComponent } from '../table-product/table-product.component'
 //? Product cart es el componente principal y es quien recibe los registros de productos en stock y los asigna mediante el ViewChild sobre su otro componente hijo TableProductSelected
 export class ProductCartComponent {
   //el signo de exclamación indica que ese elemento si existe que no va a ser nulo.
-  //@ViewChild(TableProductSelectedComponent) indica que queremos acceder a una instancia del componente TableProductSelectedComponent 
+  //@ViewChild(TableProductSelectedComponent) indica que queremos acceder a una instancia del componente hijo TableProductSelectedComponent 
   // dentro del template del componente padre (ProductCartComponent). Esta instancia va a estar representada por la variable productSelected.
   @ViewChild(TableProductSelectedComponent) productSelected!:  TableProductSelectedComponent;
 
@@ -20,24 +21,35 @@ export class ProductCartComponent {
   //va a afectar tanto en este componente como en el otro componente hijo table-product y esto orquestado por el componente principal product-cart.
   @ViewChild(TableProductComponent) productsStock!: TableProductComponent;
 
+  //Viewchild nos permite acceder en tiempo real hacia un componente que esta dentro de otro componente. Estableciendo a ese componente
+  //que accede a otros componentes (en este caso product-cart) como el componente padre de esos otros componentes.
+  @ViewChild(CartSummaryComponent) cartSummary!: CartSummaryComponent;
+
+  discount: number = 0.10;
+
   aggProduct(product:ProductDetailI){
+    //Estas variables se crearon para crear un nuevo producto dentro del arreglo listaProductSelect cuando no haya ningun producto dentro del mismo.
     let productSelected = product.product;
     let productCategorySelected = product.category;
     let productPriceSelected = product.price;
     let productIdSelected = product.id;
 
-    //aqui vamos a comprobar si la lista de productos tiene algun producto.S
+    //aqui vamos a comprobar si la lista de productos tiene algun producto.
     if(this.productSelected.listaProductSelected.length > 0){
-      //Validar si existe o no el producto.
+
+      //Validar si existe o no el producto dentro del arreglo listaProductSelected.
       let productValidation = this.productSelected.listaProductSelected.find(productInCart => productInCart.id == productIdSelected);
 
       if(productValidation){
+        //Aqui se busca dentro de los valores de la listaProductSelected (es un arreglo).
         this.productSelected.listaProductSelected.map(productInCart => {
           if(productInCart.id == productValidation.id){
             productInCart.stock++;
           }
         })
-      } else {
+      } 
+      //Caso contrario, si no aún no existe el producto en la listaProductSelected se va a agregar dicho producto con stock 1.
+      else {
         let newProduct: ProductDetailI = {
           id: productIdSelected,
           product: productSelected,
@@ -61,6 +73,17 @@ export class ProductCartComponent {
       }
       this.productSelected.listaProductSelected.push(newProduct)
     }
+
+    //Aqui para que al momento de darle al boton de agregar producto del componente hijo table-product, automaticamente se calculen los valores
+    //de la factura
+    this.cartSummary.valorDescuento = this.discount;
+    //Aqui se esta creando un objeto que va a recibir los valores que retorna el metodo subtotalCalc
+    let {subtotalValue, ivaValue, subtotalIvaValue, discountValue, totalValue } =  this.subtotalCalc(this.productSelected.listaProductSelected); 
+    this.cartSummary.subtotal = subtotalValue;
+    this.cartSummary.iva = ivaValue;
+    this.cartSummary.subtotaliva = subtotalIvaValue;
+    this.cartSummary.totalDescuento = discountValue;
+    this.cartSummary.totalPago = totalValue;
   }
 
   quitProduct(product: ProductDetailI){
@@ -90,5 +113,41 @@ export class ProductCartComponent {
       this.productSelected.listaProductSelected.splice(indexDeleteProduct,1)
     }
 
+    this.cartSummary.valorDescuento = this.discount;
+    //Aqui se esta creando un objeto que va a recibir los valores que retorna el metodo subtotalCalc. Se 
+    let {subtotalValue, ivaValue, subtotalIvaValue, discountValue, totalValue } =  this.subtotalCalc(this.productSelected.listaProductSelected); 
+    this.cartSummary.subtotal = subtotalValue;
+    this.cartSummary.iva = ivaValue;
+    this.cartSummary.subtotaliva = subtotalIvaValue;
+    this.cartSummary.totalDescuento = discountValue;
+    this.cartSummary.totalPago = totalValue;
+
+  }
+
+  subtotalCalc(productSelectedList: ProductDetailI[]) {
+    let subtotalValue: number = 0;
+    let ivaValue: number = 0;
+    let subtotalIvaValue: number = 0;
+    let discountValue: number = 0;
+    let totalValue: number = 0;
+
+    if(productSelectedList.length > 0){
+      productSelectedList.forEach(product => {
+        subtotalValue += subtotalIvaValue + (product.price * product.stock);
+      })
+    }
+
+    
+    ivaValue = subtotalValue * 0.15;
+    subtotalIvaValue = subtotalValue  + ivaValue;
+    discountValue = subtotalIvaValue * this.discount;
+    totalValue = subtotalIvaValue - discountValue;
+    return {
+      subtotalValue,
+      ivaValue,
+      subtotalIvaValue,
+      discountValue,
+      totalValue
+    };
   }
 }
