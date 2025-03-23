@@ -16,7 +16,7 @@
                     <app-table-product-selected (eventQuitProduct)="quitProduct($event)"></app-table-product-selected>
                 </div>
                 <div>
-                    <app-cart-summary></app-cart-summary>
+                    <app-cart-summary [cartSummary]="cartSummaryValue"></app-cart-summary>
                 </div>
             </div>
         </div>

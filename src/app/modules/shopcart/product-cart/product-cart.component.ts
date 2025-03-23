@@ -3,6 +3,7 @@ import { TableProductSelectedComponent } from '../table-product-selected/table-p
 import { ProductDetailI } from '../../../interfaces/productdetail.interface';
 import { TableProductComponent } from '../table-product/table-product.component';
 import { CartSummaryComponent } from '../cart-summary/cart-summary.component';
+import { CartSummaryI } from '../../../interfaces/catsummary.interface';
 
 @Component({
   selector: 'app-product-cart',
@@ -26,6 +27,16 @@ export class ProductCartComponent {
   @ViewChild(CartSummaryComponent) cartSummary!: CartSummaryComponent;
 
   discount: number = 0.10;
+
+  //Este es el que va a estar calculado en el componente principal y lo inicializamos con valores por default.
+  cartSummaryValue: CartSummaryI = {
+    subtotal: 0,
+    iva: 0,
+    subtotaliva: 0,
+    valorDescuento: 0,
+    totalDescuento:  0,
+    totalPago: 0,
+  }
 
   aggProduct(product:ProductDetailI){
     //Estas variables se crearon para crear un nuevo producto dentro del arreglo listaProductSelect cuando no haya ningun producto dentro del mismo.
@@ -76,14 +87,14 @@ export class ProductCartComponent {
 
     //Aqui para que al momento de darle al boton de agregar producto del componente hijo table-product, automaticamente se calculen los valores
     //de la factura
-    this.cartSummary.valorDescuento = this.discount;
+    this.cartSummaryValue = this.subtotalCalc(this.productSelected.listaProductSelected); 
     //Aqui se esta creando un objeto que va a recibir los valores que retorna el metodo subtotalCalc
-    let {subtotalValue, ivaValue, subtotalIvaValue, discountValue, totalValue } =  this.subtotalCalc(this.productSelected.listaProductSelected); 
-    this.cartSummary.subtotal = subtotalValue;
-    this.cartSummary.iva = ivaValue;
-    this.cartSummary.subtotaliva = subtotalIvaValue;
-    this.cartSummary.totalDescuento = discountValue;
-    this.cartSummary.totalPago = totalValue;
+    // this=  this.subtotalCalc(this.productSelected.listaProductSelected); 
+    // this.cartSummary.subtotal = subtotalValue;
+    // this.cartSummary.iva = ivaValue;
+    // this.cartSummary.subtotaliva = subtotalIvaValue;
+    // this.cartSummary.totalDescuento = discountValue;
+    // this.cartSummary.totalPago = totalValue;
   }
 
   quitProduct(product: ProductDetailI){
@@ -113,41 +124,42 @@ export class ProductCartComponent {
       this.productSelected.listaProductSelected.splice(indexDeleteProduct,1)
     }
 
-    this.cartSummary.valorDescuento = this.discount;
+    this.cartSummaryValue = this.subtotalCalc(this.productSelected.listaProductSelected); 
     //Aqui se esta creando un objeto que va a recibir los valores que retorna el metodo subtotalCalc. Se 
-    let {subtotalValue, ivaValue, subtotalIvaValue, discountValue, totalValue } =  this.subtotalCalc(this.productSelected.listaProductSelected); 
-    this.cartSummary.subtotal = subtotalValue;
-    this.cartSummary.iva = ivaValue;
-    this.cartSummary.subtotaliva = subtotalIvaValue;
-    this.cartSummary.totalDescuento = discountValue;
-    this.cartSummary.totalPago = totalValue;
+    // let {subtotalValue, ivaValue, subtotalIvaValue, discountValue, totalValue } =  this.subtotalCalc(this.productSelected.listaProductSelected); 
+    // this.cartSummary.subtotal = subtotalValue;
+    // this.cartSummary.iva = ivaValue;
+    // this.cartSummary.subtotaliva = subtotalIvaValue;
+    // this.cartSummary.totalDescuento = discountValue;
+    // this.cartSummary.totalPago = totalValue;
 
   }
 
-  subtotalCalc(productSelectedList: ProductDetailI[]) {
-    let subtotalValue: number = 0;
-    let ivaValue: number = 0;
-    let subtotalIvaValue: number = 0;
-    let discountValue: number = 0;
-    let totalValue: number = 0;
+  subtotalCalc(productSelectedList: ProductDetailI[]): CartSummaryI {
+    let subtotal: number = 0;
+    let iva: number = 0;
+    let subtotaliva: number = 0;
+    let totalDescuento: number = 0;
+    let totalPago: number = 0;
 
     if(productSelectedList.length > 0){
       productSelectedList.forEach(product => {
-        subtotalValue += subtotalIvaValue + (product.price * product.stock);
+        subtotal += subtotaliva + (product.price * product.stock);
       })
     }
 
     
-    ivaValue = subtotalValue * 0.15;
-    subtotalIvaValue = subtotalValue  + ivaValue;
-    discountValue = subtotalIvaValue * this.discount;
-    totalValue = subtotalIvaValue - discountValue;
+    iva = subtotal * 0.15;
+    subtotaliva = subtotal  + iva;
+    totalDescuento = subtotaliva * this.discount;
+    totalPago = subtotaliva - totalDescuento;
     return {
-      subtotalValue,
-      ivaValue,
-      subtotalIvaValue,
-      discountValue,
-      totalValue
+      subtotal,
+      iva,
+      subtotaliva,
+      totalDescuento,
+      totalPago, 
+      valorDescuento: this.discount
     };
   }
 }

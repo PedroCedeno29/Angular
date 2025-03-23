@@ -1,19 +1,19 @@
 <div class="form-control">
     <div>
         <!-- Con la interpolacion {{}} se traen los valores del componente.ts hacia el componente.html -->
-        Subtotal: {{subtotal | currency}}
+        Subtotal: {{cartSummary.subtotal| currency}}
     </div>
     <div>
-        Iva 15%: {{iva | currency}}
+        Iva 15%: {{cartSummary.iva | currency}}
     </div>
     <div>
-        Subtotal + IVA: {{subtotaliva | currency}}
+        Subtotal + IVA: {{cartSummary.subtotaliva| currency}}
     </div>
     <div>
-        Descuento: {{totalDescuento | currency}}
+        Descuento: {{cartSummary.totalDescuento| currency}}
     </div>
     <div>
-        Total a pagar : {{totalPago | currency}}
+        Total a pagar : {{cartSummary.totalPago| currency}}
     </div>
 
 

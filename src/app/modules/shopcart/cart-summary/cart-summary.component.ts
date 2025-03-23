@@ -1,4 +1,5 @@
-import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { CartSummaryI } from '../../../interfaces/catsummary.interface';
 
 @Component({
   selector: 'app-cart-summary',
@@ -7,11 +8,19 @@ import { Component, OnChanges, SimpleChanges } from '@angular/core';
 })
 export class CartSummaryComponent {
 
-  subtotal: number = 0;
-  iva: number = 0;
-  subtotaliva: number = 0;
-  valorDescuento: number = 0;
-  totalDescuento:  number = 0;
-  totalPago: number = 0;
+  //Ctrl + espacio para autocompletar
+
+  //Todas estas variables inician en 0.
+  //Si tenemos un parametros de entrada con valores por defecto, solo son para inicializar el componente, estos se valores se van actualizando
+  //en la medida que nosotros vayamos actualizando los valores enviados hacia nuestro componente.
+  @Input() cartSummary: CartSummaryI = {
+    subtotal: 0,
+    iva: 0,
+    subtotaliva: 0,
+    valorDescuento: 0,
+    totalDescuento: 0,
+    totalPago: 0
+
+  }
 
 }
