@@ -37,6 +37,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/shopcart/shopcart.module').then(m => m.ShopcartModule)
   },
   {
+    path: 'editproduct',
+    loadChildren: () => import('./modules/product/product.module').then(m => m.ProductModule)
+  },
+  {
     path: '**',
     component: NotfoundComponent
   }
